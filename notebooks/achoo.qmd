@@ -1,0 +1,58 @@
+---
+title: "Achoo!"
+author: "Clare Gibson"
+date: "2025-06-14"
+format:
+  gfm:
+    toc: true
+    toc-depth: 2
+---
+
+# Question
+
+Can Apple Health data help me predict how many times I will sneeze in a day?
+
+# Introduction
+
+I am a chronic sneezer. Some days I can sneeze all day and all night long. The sneeze seems to be my body's default reaction to any kind of respiratory irritant. I have been diagnosed as having allergies to dust, grass pollen and cat hair, so my allergic sneezing happens all year round. On top of that, whenever I get any kind of respiratory virus (cold, flu, Covid), sneezing is my number one symptom.
+
+Since 1 May 2025 I have been keeping count of the number of times I sneeze per day. I started doing this primarily to track which days were my particularly bad "attack" days, but because I also wear an Apple Watch, I wondered if I might be able to discover any patterns within my health data that might help to predict my sneeze count. It's also an opportunity for me to practise some data science.
+
+## Packages
+
+The code chunk below loads all of the packages needed for this analysis.
+
+```{r}
+#| label: load-packages
+#| warnings: false
+#| output: false
+
+# Load packages
+library(here)
+library(tidyverse)
+library(janitor)
+library(googlesheets4)
+```
+
+## Data
+
+The data for this analysis is located in [Google Drive](https://docs.google.com/spreadsheets/d/1pU1wmIuUt1oS-5W6xpchRRMMRrHrKT8KYfvK1saLri0/edit?usp=sharing).
+
+```{r}
+#| label: load-data
+#| output: false
+
+# Read data into a dataframe
+sneezes_raw <- read_sheet(
+  ss = "https://docs.google.com/spreadsheets/d/1pU1wmIuUt1oS-5W6xpchRRMMRrHrKT8KYfvK1saLri0/edit?gid=0#gid=0",
+  sheet = "data"
+)
+```
+```{r}
+#| label: preview-data
+
+# Preview the data
+glimpse(sneezes_raw)
+```
+
+
